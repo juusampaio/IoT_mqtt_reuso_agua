@@ -38,7 +38,7 @@ O acionamento da bomba ocorre localmente com base nas regras:
 
 ## Capturas de Tela
 
-![Diagrama Fritzing](imagens/fritzing-diagrama.png)  
+![Image](https://github.com/user-attachments/assets/b77ffdeb-a3a9-4bb5-af62-1c94f9c12a24) 
 *Figura 1 – Diagrama da montagem no Fritzing.*
 
 ![Console MQTT](imagens/mqtt-console.png)  
