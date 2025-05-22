@@ -1,0 +1,22 @@
+
+{
+  "version": 1,
+  "author": "Julia",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp32", "top": -50, "left": 100, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht22", "top": 30, "left": 250, "attrs": {} },
+    { "type": "wokwi-led", "id": "led", "top": 100, "left": 250, "attrs": { "color": "red" } },
+    { "type": "wokwi-potentiometer", "id": "pot", "top": 170, "left": 250, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp32:15", "dht22:SIGNAL", "green", [ "v0" ] ],
+    [ "esp32:3V3", "dht22:VCC", "red", [ "v0" ] ],
+    [ "esp32:GND", "dht22:GND", "black", [ "v0" ] ],
+    [ "esp32:2", "led:A", "green", [ "v0" ] ],
+    [ "esp32:GND", "led:C", "black", [ "v0" ] ],
+    [ "esp32:33", "pot:SIG", "blue", [ "v0" ] ],
+    [ "esp32:3V3", "pot:VCC", "red", [ "v0" ] ],
+    [ "esp32:GND", "pot:GND", "black", [ "v0" ] ]
+  ]
+}
