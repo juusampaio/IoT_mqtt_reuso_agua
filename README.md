@@ -21,7 +21,7 @@ Este projeto simula um sistema IoT que monitora a qualidade da água de reuso, u
 ## Software
 
 O código principal está no arquivo [main.ino](main.ino).  
-Você pode simular o projeto online no [Wokwi](https://wokwi.com) ou via VS Code com a extensão Wokwi.
+Você pode simular o projeto online no [Wokwi](https://wokwi.com/projects/431615122443148289).
 
 ## Comunicação MQTT
 
