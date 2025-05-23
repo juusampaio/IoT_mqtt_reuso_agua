@@ -21,7 +21,7 @@ Este projeto simula um sistema IoT que monitora a qualidade da água de reuso, u
 ## Software
 
 O código principal está no arquivo [main.ino](main.ino).  
-Você pode simular o projeto online no [Wokwi](https://wokwi.com/projects/431615122443148289).
+Você pode simular o projeto online no [Wokwi](https://wokwi.com/projects/431693626687148033).
 
 ## Comunicação MQTT
 
@@ -43,13 +43,6 @@ O acionamento da bomba ocorre localmente com base nas regras:
 
 ![Console MQTT](imagens/mqtt-console.png)  
 *Figura 2 – Console com dados publicados via MQTT.*
-
-## Requisitos Atendidos
-
-✔ Comunicação via protocolo MQTT  
-✔ Controle remoto de atuador via regras de sensores  
-✔ Documentação de hardware e software  
-✔ Projeto documentado e reprodutível
 
 ---
 
