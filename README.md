@@ -61,10 +61,10 @@ O projeto utiliza protocolo **MQTT** sobre rede **TCP/IP**, realizando:
 - **Conexão com broker público em tempo real**
 - **Acionamento remoto de atuador (bomba) baseado em regras de sensor**
 
-A lógica é implementada e testada em tempo real no simulador [Wokwi](https://wokwi.com/projects/431744424048291841), com suporte a MQTT real, conforme exigido.
+A lógica é implementada e testada em tempo real no simulador [Wokwi](https://wokwi.com/projects/431744424048291841), com suporte a MQTT real.
 
 ## Licença
 
-Este projeto foi desenvolvido exclusivamente para fins acadêmicos.
+Este projeto foi desenvolvido para fins acadêmicos.
 
 Desenvolvido por: **Julia Sampaio Cavalcanti Silva – 2025**
