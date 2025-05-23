@@ -1,19 +1,20 @@
 # Sistema de Monitoramento e Controle de Qualidade da Água para Reuso Doméstico com IoT
 
-Este projeto simula um sistema IoT que monitora a qualidade da água de reuso, utilizando sensores de temperatura, umidade e pH, com controle automatizado de uma bomba via protocolo MQTT.
+Este projeto simula um sistema IoT embarcado com ESP32, capaz de monitorar a qualidade da água reutilizada por meio de sensores e realizar o acionamento automático de uma bomba d'água com base nos dados recebidos, utilizando o protocolo MQTT para comunicação com a internet.
 
 ## Funcionalidades
 
-- Leitura de temperatura e umidade com sensor DHT22
-- Leitura simulada de pH com potenciômetro
-- Acionamento automático de uma bomba (representada por LED)
-- Comunicação em tempo real com broker MQTT (broker.hivemq.com)
+- Conexão à internet via Wi-Fi
+- Leitura de **temperatura** e **umidade** com sensor **DHT22**
+- LED indicando conexão com o **Wi-Fi**
+- LED indicando conexão com o **broker MQTT**
+- LED simulando a **bomba d'água**, ativada automaticamente com base na **temperatura**
+- Comunicação em tempo real com **broker MQTT público** (`test.mosquitto.org`)
 
 ## Componentes Utilizados
 
 - ESP32 DevKit V1
 - Sensor DHT22
-- Potenciômetro (simulando sensor de pH)
 - LED (simulando bomba 5V)
 - Conexão via Wi-Fi (rede Wokwi-GUEST)
 - Protocolo MQTT
