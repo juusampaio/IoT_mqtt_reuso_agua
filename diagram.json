@@ -4,12 +4,12 @@
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
-    { "type": "wokwi-dht22", "id": "dht1", "top": -15.53, "left": 145.5, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -76.5, "left": 157.8, "attrs": {} },
     {
       "type": "wokwi-resistor",
       "id": "r1",
       "top": 90.35,
-      "left": -76.8,
+      "left": -96,
       "attrs": { "value": "150" }
     },
     {
@@ -30,23 +30,24 @@
       "type": "wokwi-led",
       "id": "led1",
       "top": 54,
-      "left": -121,
+      "left": -159.4,
       "attrs": { "color": "blue", "flip": "" }
     },
     {
       "type": "wokwi-led",
       "id": "led3",
-      "top": -22.8,
-      "left": -130.6,
+      "top": -32.4,
+      "left": -159.4,
       "attrs": { "color": "yellow" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r3",
-      "top": 13.55,
-      "left": -86.4,
+      "top": 3.95,
+      "left": -96,
       "attrs": { "value": "150" }
-    }
+    },
+    { "type": "chip-soil_sensor", "id": "chip1", "top": 183.42, "left": 216, "attrs": {} }
   ],
   "connections": [
     [ "esp:TX0", "$serialMonitor:RX", "", [] ],
@@ -56,13 +57,16 @@
     [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
     [ "led1:A", "r1:1", "green", [ "v0" ] ],
     [ "led2:A", "r2:1", "green", [ "v0" ] ],
-    [ "esp:D2", "r1:2", "green", [ "h13.9", "v80.8", "h-124.8" ] ],
+    [ "esp:D2", "r1:2", "green", [ "h13.9", "v80.8", "h-144", "v-115.2" ] ],
     [ "esp:D4", "r2:2", "green", [ "h33.1", "v110.4", "h-171.6" ] ],
     [ "esp:GND.2", "led1:C", "black", [ "h-14.6", "v-33.8", "h-86.4" ] ],
     [ "esp:GND.2", "led2:C", "black", [ "h-149", "v52.6" ] ],
     [ "led3:A", "r3:1", "green", [ "v0" ] ],
-    [ "esp:D5", "led3:C", "green", [ "h23.5", "v-129.7", "h-259.2", "v57.6" ] ],
-    [ "esp:GND.2", "r3:2", "black", [ "h-14.6", "v-129.8" ] ]
+    [ "esp:GND.2", "led3:C", "black", [ "h-14.6", "v-110.6", "h-105.6" ] ],
+    [ "r3:2", "esp:D5", "green", [ "v-28.8", "h152.4", "v110.5" ] ],
+    [ "chip1:GND", "esp:GND.1", "black", [ "h-19.2", "v-43" ] ],
+    [ "chip1:VCC", "esp:3V3", "red", [ "h-48", "v-43.1" ] ],
+    [ "esp:D34", "chip1:A0", "green", [ "h-24.2", "v196.5", "h230.4", "v-38.4" ] ]
   ],
   "dependencies": {}
 }
