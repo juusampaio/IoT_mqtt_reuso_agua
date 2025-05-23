@@ -7,6 +7,7 @@
 #define BOMBA_PIN 5    // LED amarelo (simulando bomba)
 
 const int DHT_PIN = 15;
+const int PH_PIN = 34;
 
 DHTesp dhtSensor;
 
@@ -47,7 +48,7 @@ void reconnect() {
     } else {
       Serial.print("falha, rc=");
       Serial.print(client.state());
-      Serial.println(" tentando em 5 segundos");
+      Serial.println(" tentando novamente em 5 segundos");
       delay(5000);
     }
   }
@@ -85,23 +86,37 @@ client.loop();
 digitalWrite(LED_MQTT, client.connected() ? HIGH : LOW);
 
 TempAndHumidity data = dhtSensor.getTempAndHumidity();
-  String temperatura = String(data.temperature, 2);
-  String umidade = String(data.humidity, 1);
+  float temperatura = data.temperature;
+  float umidade = data.humidity;
 
-  Serial.println("Temp: " + temperatura + "°C");
-  Serial.println("Umidade: " + umidade + "%");
+  int phRaw = analogRead(PH_PIN);
+  float ph = map(phRaw, 0, 4095, 0, 1400) / 100.0; 
+
+  client.publish("sensor/temperatura", String(temperatura, 2).c_str());
+  client.publish("sensor/umidade", String(umidade, 1).c_str());
+  client.publish("sensor/ph", String(ph, 2).c_str());
+  
+  Serial.println("Temp: " + String(temperatura) + "°C");
+  Serial.println("Umidade: " + String(umidade) + "%");
+  Serial.println("pH: " + String(ph));
   Serial.println("---");
 
-  client.publish("sensor/temperatura", temperatura.c_str());
-  client.publish("sensor/umidade", umidade.c_str());
-
-  if (data.temperature > 30.0) {
+  if (temperatura > 30.0 || ph < 6.5 || ph > 8.5) {
     digitalWrite(BOMBA_PIN, HIGH);
+
+    if (temperatura > 30.0 && (ph < 6.5 || ph > 8.5)) {
+    Serial.println("Temperatura alta e pH fora da faixa! Bomba LIGADA.");
+  } else if (temperatura > 30.0) {
     Serial.println("Temperatura alta! Bomba LIGADA.");
-  } else {
-    digitalWrite(BOMBA_PIN, LOW);
-    Serial.println("Temperatura normal. Bomba DESLIGADA.");
+  } else if (ph < 6.5 || ph > 8.5) {
+    Serial.println("pH fora da faixa segura! Bomba LIGADA.");
   }
 
+  } else {
+    digitalWrite(BOMBA_PIN, LOW);
+    Serial.println("Temperatura e pH dentro dos padrões. Bomba DESLIGADA.");
+  }
+
+  Serial.println("---");
   delay(10000); 
 }
