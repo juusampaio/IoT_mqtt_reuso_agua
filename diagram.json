@@ -1,22 +1,68 @@
-
 {
   "version": 1,
   "author": "Julia",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-esp32-devkit-v1", "id": "esp32", "top": -50, "left": 100, "attrs": {} },
-    { "type": "wokwi-dht22", "id": "dht22", "top": 30, "left": 250, "attrs": {} },
-    { "type": "wokwi-led", "id": "led", "top": 100, "left": 250, "attrs": { "color": "red" } },
-    { "type": "wokwi-potentiometer", "id": "pot", "top": 170, "left": 250, "attrs": {} }
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -15.53, "left": 145.5, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 90.35,
+      "left": -76.8,
+      "attrs": { "value": "150" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 159.6,
+      "left": -140.2,
+      "attrs": { "color": "red", "flip": "" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 195.95,
+      "left": -96,
+      "attrs": { "value": "150" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 54,
+      "left": -121,
+      "attrs": { "color": "blue", "flip": "" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -22.8,
+      "left": -130.6,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 13.55,
+      "left": -86.4,
+      "attrs": { "value": "150" }
+    }
   ],
   "connections": [
-    [ "esp32:15", "dht22:SIGNAL", "green", [ "v0" ] ],
-    [ "esp32:3V3", "dht22:VCC", "red", [ "v0" ] ],
-    [ "esp32:GND", "dht22:GND", "black", [ "v0" ] ],
-    [ "esp32:2", "led:A", "green", [ "v0" ] ],
-    [ "esp32:GND", "led:C", "black", [ "v0" ] ],
-    [ "esp32:33", "pot:SIG", "blue", [ "v0" ] ],
-    [ "esp32:3V3", "pot:VCC", "red", [ "v0" ] ],
-    [ "esp32:GND", "pot:GND", "black", [ "v0" ] ]
-  ]
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "dht1:SDA", "esp:D15", "green", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ],
+    [ "led2:A", "r2:1", "green", [ "v0" ] ],
+    [ "esp:D2", "r1:2", "green", [ "h13.9", "v80.8", "h-124.8" ] ],
+    [ "esp:D4", "r2:2", "green", [ "h33.1", "v110.4", "h-171.6" ] ],
+    [ "esp:GND.2", "led1:C", "black", [ "h-14.6", "v-33.8", "h-86.4" ] ],
+    [ "esp:GND.2", "led2:C", "black", [ "h-149", "v52.6" ] ],
+    [ "led3:A", "r3:1", "green", [ "v0" ] ],
+    [ "esp:D5", "led3:C", "green", [ "h23.5", "v-129.7", "h-259.2", "v57.6" ] ],
+    [ "esp:GND.2", "r3:2", "black", [ "h-14.6", "v-129.8" ] ]
+  ],
+  "dependencies": {}
 }
