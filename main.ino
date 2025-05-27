@@ -9,6 +9,8 @@
 const int DHT_PIN = 15;
 const int PH_PIN = 34;
 
+#define MODO_TESTE false  // Altere para false para usar os sensores reais
+
 DHTesp dhtSensor;
 
 const char* ssid = "Wokwi-GUEST";
@@ -85,12 +87,20 @@ client.loop();
 
 digitalWrite(LED_MQTT, client.connected() ? HIGH : LOW);
 
-TempAndHumidity data = dhtSensor.getTempAndHumidity();
-  float temperatura = data.temperature;
-  float umidade = data.humidity;
+  float temperatura, umidade, ph;
 
-  int phRaw = analogRead(PH_PIN);
-  float ph = map(phRaw, 0, 4095, 0, 1400) / 100.0; 
+  if (MODO_TESTE) {
+    temperatura = 27.5;  // simulado
+    umidade = 40.0;      // simulado
+    ph = 6.8;            // simulado
+  } else {
+    TempAndHumidity data = dhtSensor.getTempAndHumidity();
+    temperatura = data.temperature;
+    umidade = data.humidity;
+
+  int phAnalog = analogRead(PH_PIN);
+  float ph = map(phAnalog, 0, 4095, 0, 1400); 
+  }
 
   client.publish("sensor/temperatura", String(temperatura, 2).c_str());
   client.publish("sensor/umidade", String(umidade, 1).c_str());
